@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180429224315) do
+ActiveRecord::Schema.define(version: 20180501214818) do
 
   create_table "transactions", force: :cascade do |t|
     t.integer "borrower_id"
     t.integer "lender_id"
-    t.integer "amount"
+    t.float "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["borrower_id"], name: "index_transactions_on_borrower_id"

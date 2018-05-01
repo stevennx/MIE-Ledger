@@ -12,47 +12,36 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
 
-  def borrowing?(lender)
-    lenders.include? lender
-  end
-
-  def lending?(borrower)
-    borrow.include? borrower
-  end
-
-  # User borrows money from lender
-  def borrow!(lender)
-    if lender != self && !borrowing?(lender)
-      lenders << lender
+  def add_hash(summary, name, amount)
+    if summary.has_key? name
+      summary[name] += amount
+    else
+      summary[name] = amount
     end
   end
 
-  # User lends money to borrower
-  def lend!(borrower)
-    if borrower != self && !lending?(borrower)
-      borrowers << borrower
+  def negate(amount)
+    if amount > 0
+      amount = -amount
     end
   end
 
 
-  # Check it's return value
-  def owe_summary!
+  def owe_summary
     summary = Hash.new
     debts.each do |debt_transact|
-      name = User.where(id: debt_transact.lender_id)
+      name = debt_transact.lender.name
       amount = debt_transact.amount
-      summary[name] = amount
+      add_hash(summary, name, amount)
     end
 
     credits.each do |credit_transact|
-      name = User.where(id: credit_transact.borrower_id)
-      amount = debt_transact.amount * -1
-      summary[name] += amount
+      name = credit_transact.borrower.name
+      amount = credit_transact.amount
+      negate(amount)
+      add_hash(summary, name, amount)
     end
+
+    return summary
   end
-
-
-
-  end
-
 end

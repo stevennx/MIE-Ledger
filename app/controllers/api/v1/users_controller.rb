@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: [:destroy, :show, :borrowers, :lenders]
+  before_action :set_user, except: [:index, :create]
 
   def index
     @users = User.all
@@ -14,11 +14,10 @@ class Api::V1::UsersController < ApplicationController
     render json: @user.lenders
   end
 
-
   def summary
-    render json: @user.owe_summary!
+    @summary = @user.owe_summary
+    render json: @summary
   end
-
 
   def create
     @user = User.new(user_params)
@@ -41,6 +40,7 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find(params[:user_id])
     end
+
 end
