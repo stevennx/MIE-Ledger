@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
 
   def add_hash(summary, name, amount)
-    if summary.has_key? name
+    if summary[name]
       summary[name] += amount
     else
       summary[name] = amount
@@ -29,6 +29,7 @@ class User < ApplicationRecord
 
   def owe_summary
     summary = Hash.new
+
     debts.each do |debt_transact|
       name = debt_transact.lender.name
       amount = debt_transact.amount
@@ -40,6 +41,12 @@ class User < ApplicationRecord
       amount = credit_transact.amount
       negate(amount)
       add_hash(summary, name, amount)
+    end
+
+    summary.each do |key, value|
+      if value == 0
+        summary.delete(key)
+      end
     end
 
     return summary

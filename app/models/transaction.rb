@@ -5,12 +5,19 @@ class Transaction < ApplicationRecord
 
   validates_presence_of [:amount]
   validate :valid_ids
+  validate :not_zero
 
 
   private
     def valid_ids
       if borrower == lender
         errors.add(:borrower, "cannot be the same as lender")
+      end
+    end
+
+    def not_zero
+      if amount == 0
+        errors.add(:amount, "cannot be zero")
       end
     end
 

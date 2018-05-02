@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   scope module: "api" do
     scope module: "v1" do
 
-      resources :users, only: [:index, :create, :destroy] do
+      resources :users, only: [:index, :show, :create, :destroy] do
         post "transactions/owe", to: "transactions#create_debt"
         post "transactions/lend", to: "transactions#create_credit"
         get "borrowers", to: "users#borrowers"
