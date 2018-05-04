@@ -3,7 +3,7 @@ class Api::V1::TransactionsController < ApplicationController
 
   def index
     @transactions = Transaction.all
-    render json: @transations
+    render json: @transactions
   end
 
   def create_debt
