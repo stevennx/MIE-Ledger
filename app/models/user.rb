@@ -20,11 +20,6 @@ class User < ApplicationRecord
     end
   end
 
-  def negate(amount)
-    if amount > 0
-      amount = -amount
-    end
-  end
 
 
   def owe_summary
@@ -38,8 +33,7 @@ class User < ApplicationRecord
 
     credits.each do |credit_transact|
       name = credit_transact.borrower.name
-      amount = credit_transact.amount
-      negate(amount)
+      amount = -credit_transact.amount
       add_hash(summary, name, amount)
     end
 

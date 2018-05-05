@@ -1,18 +1,31 @@
 class Api::V1::TransactionsController < ApplicationController
-  before_action :set_user, only: [:create_debt, :create_credit]
+  before_action :set_user, except: [:index]
 
   def index
     @transactions = Transaction.all
     render json: @transactions
   end
 
+  def debts
+    @debts = @user.debts
+    render json: @debts
+  end
+
+  def credits
+    @credits = @user.credits
+    render json: @credits
+  end
+
   def create_debt
     @transaction = Transaction.new(debt_params)
     @transaction.borrower = @user
     @transaction.lender = User.find(debt_params[:lender_id])
-    if @transaction.save
+    if @transaction.save && @transaction.amount > 0
       render json: { status: 200,
                     messsage: "Successfully created more debt!" }
+    elsif @transaction.amount < 0
+      render json: { status: 200,
+                    messsage: "Successfully made payment!" }
     else
       render json: { status: 500, errors: @transaction.errors }
     end

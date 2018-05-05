@@ -6,8 +6,9 @@ Rails.application.routes.draw do
     scope module: "v1" do
 
       resources :users, only: [:index, :show, :create, :destroy] do
-        post "transactions/owe", to: "transactions#create_debt"
-        post "transactions/lend", to: "transactions#create_credit"
+        post "owe", to: "transactions#create_debt"
+        get "debts", to: "transactions#debts"
+        get "credits", to: "transactions#credits"
         get "borrowers", to: "users#borrowers"
         get "lenders", to: "users#lenders"
         get "summary", to: "users#summary"
