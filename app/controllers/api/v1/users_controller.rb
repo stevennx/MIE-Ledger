@@ -12,11 +12,13 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def borrowers
-    render json: @user.borrowers
+    @borrowers = @user.borrowers.uniq
+    render json: @borrowers
   end
 
   def lenders
-    render json: @user.lenders
+    @lenders = @user.lenders.uniq
+    render json: @lenders
   end
 
   def summary

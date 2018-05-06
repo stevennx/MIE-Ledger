@@ -20,8 +20,6 @@ class User < ApplicationRecord
     end
   end
 
-
-
   def owe_summary
     summary = Hash.new
 
