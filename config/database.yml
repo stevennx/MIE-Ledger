@@ -79,5 +79,4 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: LedgerAPI_production
+  database: LedgerAPI_production 
