@@ -3,7 +3,7 @@ class Transaction < ApplicationRecord
   belongs_to :borrower, class_name: "User"
   belongs_to :lender, class_name: "User"
 
-  validates_presence_of [:amount]
+  validates_presence_of [:amount, :description]
   validate :valid_ids
   validate :not_zero
 

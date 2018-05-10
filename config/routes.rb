@@ -14,8 +14,10 @@ Rails.application.routes.draw do
         get "summary", to: "users#summary"
       end
 
-      get "transactions", to: "transactions#index"
 
+      get "transactions", to: "transactions#index"
+      post "transactions/active", to: "transactions#active"
+      patch "set_params", to: "transactions#set_extra_params"
     end
   end
 

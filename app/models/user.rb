@@ -24,15 +24,19 @@ class User < ApplicationRecord
     summary = Hash.new
 
     debts.each do |debt_transact|
-      name = debt_transact.lender.name
-      amount = debt_transact.amount
-      add_hash(summary, name, amount)
+      if debt_transact.active
+        name = debt_transact.lender.name
+        amount = debt_transact.amount
+        add_hash(summary, name, amount)
+      end
     end
 
     credits.each do |credit_transact|
-      name = credit_transact.borrower.name
-      amount = -credit_transact.amount
-      add_hash(summary, name, amount)
+      if credit_transact.active
+        name = credit_transact.borrower.name
+        amount = -credit_transact.amount
+        add_hash(summary, name, amount)
+      end
     end
 
     summary.each do |key, value|
