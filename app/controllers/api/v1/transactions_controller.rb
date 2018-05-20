@@ -19,7 +19,7 @@ class Api::V1::TransactionsController < ApplicationController
   def active
     @transaction = Transaction.find(active_params[:transaction_id])
     @transaction.active = active_params[:active]
-    Transactio.all.sort()
+    Transaction.all.sort()
     if @transaction.save
       render json: { status: 200,
                     messsage: "Successfully set active to #{ @transaction.active }" }
