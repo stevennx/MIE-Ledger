@@ -40,6 +40,9 @@ class Api::V1::TransactionsController < ApplicationController
 
   def create_debt
     @transaction = Transaction.new(debt_params)
+    @transaction.amount = @transaction.amount.round
+
+    # Initialize lenders, borrowers and active status
     init_transaction(@transaction, @user, User.find(debt_params[:lender_id]))
     if @transaction.save && @transaction.amount > 0
       render json: { status: 200,
