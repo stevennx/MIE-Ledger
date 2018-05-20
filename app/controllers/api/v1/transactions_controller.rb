@@ -2,7 +2,7 @@ class Api::V1::TransactionsController < ApplicationController
   before_action :set_user, except: [:index, :active, :set_extra_params]
 
   def index
-    @transactions = Transaction.all.sort()
+    @transactions = Transaction.all
     render json: @transactions
   end
 
@@ -19,6 +19,7 @@ class Api::V1::TransactionsController < ApplicationController
   def active
     @transaction = Transaction.find(active_params[:transaction_id])
     @transaction.active = active_params[:active]
+    Transactio.all.sort()
     if @transaction.save
       render json: { status: 200,
                     messsage: "Successfully set active to #{ @transaction.active }" }
