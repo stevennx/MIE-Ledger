@@ -2,7 +2,7 @@ class Api::V1::TransactionsController < ApplicationController
   before_action :set_user, except: [:index, :active, :set_extra_params]
 
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.all.sort()
     render json: @transactions
   end
 
