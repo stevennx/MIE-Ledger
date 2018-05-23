@@ -1,1 +1,2 @@
-# MIELedger
+# MIE Ledger
+An app built in collaboration with <a href="https://github.com/eddddddy">eddddddy</a> to keep track of loans between group members on the 2018 University of Waterloo Math in Europe program.

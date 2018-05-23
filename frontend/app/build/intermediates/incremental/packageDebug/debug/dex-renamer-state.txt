@@ -1,0 +1,4 @@
+#Sun May 13 12:11:19 CEST 2018
+base.0=C\:\\Users\\Edward\\Documents\\Side Projects\\MIE Ledger\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
