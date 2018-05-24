@@ -113,6 +113,21 @@
             ]
         },
         {
+            "outputFile": "C:\\Users\\Edward\\Documents\\Side Projects\\MIE Ledger\\app\\build\\intermediates\\res\\merged\\debug\\values-xlarge-v4_values-xlarge-v4.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Edward\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a86e39aed3cbd3ab27185f7e29172cb0\\res\\values-xlarge-v4\\values-xlarge-v4.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,126,197,267,337,405",
+                        "endColumns": "70,70,69,69,67,67",
+                        "endOffsets": "121,192,262,332,400,468"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "C:\\Users\\Edward\\Documents\\Side Projects\\MIE Ledger\\app\\build\\intermediates\\res\\merged\\debug\\values-cs_values-cs.arsc.flat",
             "map": [
                 {
@@ -140,21 +155,6 @@
                         "startOffsets": "105,212,314,423,509,614,731,812,893,977,1081,1190,1289,1395,1505,1612,1775,1873",
                         "endColumns": "106,101,108,85,104,116,80,80,83,103,108,98,105,109,106,162,97,81",
                         "endOffsets": "207,309,418,504,609,726,807,888,972,1076,1185,1284,1390,1500,1607,1770,1868,1950"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "C:\\Users\\Edward\\Documents\\Side Projects\\MIE Ledger\\app\\build\\intermediates\\res\\merged\\debug\\values-xlarge-v4_values-xlarge-v4.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Edward\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a86e39aed3cbd3ab27185f7e29172cb0\\res\\values-xlarge-v4\\values-xlarge-v4.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "55,126,197,267,337,405",
-                        "endColumns": "70,70,69,69,67,67",
-                        "endOffsets": "121,192,262,332,400,468"
                     }
                 }
             ]
@@ -303,38 +303,6 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\Edward\\Documents\\Side Projects\\MIE Ledger\\app\\build\\intermediates\\res\\merged\\debug\\values-af_values-af.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Edward\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\ec4c637d33ffb39ff06c57239ffb70d2\\res\\values-af\\values-af.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "20",
-                        "startColumns": "4",
-                        "startOffsets": "1906",
-                        "endColumns": "100",
-                        "endOffsets": "2002"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Edward\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a86e39aed3cbd3ab27185f7e29172cb0\\res\\values-af\\values-af.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,209,309,415,500,603,721,797,874,955,1062,1165,1262,1370,1472,1574,1728,1826",
-                        "endColumns": "103,99,105,84,102,117,75,76,80,106,102,96,107,101,101,153,97,79",
-                        "endOffsets": "204,304,410,495,598,716,792,869,950,1057,1160,1257,1365,1467,1569,1723,1821,1901"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "C:\\Users\\Edward\\Documents\\Side Projects\\MIE Ledger\\app\\build\\intermediates\\res\\merged\\debug\\values-it_values-it.arsc.flat",
             "map": [
                 {
@@ -362,6 +330,38 @@
                         "startOffsets": "105,214,314,423,507,616,741,818,894,975,1081,1189,1287,1391,1496,1603,1766,1866",
                         "endColumns": "108,99,108,83,108,124,76,75,80,105,107,97,103,104,106,162,99,82",
                         "endOffsets": "209,309,418,502,611,736,813,889,970,1076,1184,1282,1386,1491,1598,1761,1861,1944"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\Edward\\Documents\\Side Projects\\MIE Ledger\\app\\build\\intermediates\\res\\merged\\debug\\values-af_values-af.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Edward\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\ec4c637d33ffb39ff06c57239ffb70d2\\res\\values-af\\values-af.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "20",
+                        "startColumns": "4",
+                        "startOffsets": "1906",
+                        "endColumns": "100",
+                        "endOffsets": "2002"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Edward\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a86e39aed3cbd3ab27185f7e29172cb0\\res\\values-af\\values-af.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,209,309,415,500,603,721,797,874,955,1062,1165,1262,1370,1472,1574,1728,1826",
+                        "endColumns": "103,99,105,84,102,117,75,76,80,106,102,96,107,101,101,153,97,79",
+                        "endOffsets": "204,304,410,495,598,716,792,869,950,1057,1160,1257,1365,1467,1569,1723,1821,1901"
                     }
                 }
             ]

@@ -36,12 +36,22 @@ public class LedgerActivity extends AppCompatActivity {
     private DisplayAdapter borrowerDisplayAdapter;
     private Context context;
 
+    public HashMap<String, String> usersByID;
+    public HashMap<String, String> users;
+    public ArrayList<HashMap<String, Integer>> userTransactions;
+    public ArrayList<String> transactions;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ledger);
         sharedPreferences = getSharedPreferences("identity", Context.MODE_PRIVATE);
         context = this;
+        try {
+            initialize();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println("ledger activity started");
 
         lenderList = findViewById(R.id.listView4);
@@ -49,19 +59,22 @@ public class LedgerActivity extends AppCompatActivity {
         nameText = findViewById(R.id.textView4);
         nameText.setText(sharedPreferences.getString("name", "Edward"));
 
+        /*
         GetTransactionsRunnable getTransactionsRunnable = new GetTransactionsRunnable();
         new Thread(getTransactionsRunnable).start();
         while (!getTransactionsRunnable.isCompleted()) {
 
         }
+        */
+
         System.out.println("point a");
-        ArrayList<HashMap<String, Integer>> transactions = getTransactionsRunnable.getTransactions();
-        ArrayList<Map.Entry<String, Integer>> lenderArrayList = new ArrayList<>(transactions.get(0).entrySet());
-        ArrayList<Map.Entry<String, Integer>> borrowerArrayList = new ArrayList<>(transactions.get(1).entrySet());
+        //ArrayList<HashMap<String, Integer>> transactions = getTransactionsRunnable.getTransactions();
+        ArrayList<Map.Entry<String, Integer>> lenderArrayList = new ArrayList<>(userTransactions.get(0).entrySet());
+        ArrayList<Map.Entry<String, Integer>> borrowerArrayList = new ArrayList<>(userTransactions.get(1).entrySet());
         System.out.println("point b");
 
-        lenderDisplayAdapter = new DisplayAdapter((Activity) context, lenderArrayList);
-        borrowerDisplayAdapter = new DisplayAdapter((Activity) context, borrowerArrayList);
+        lenderDisplayAdapter = new DisplayAdapter((Activity) context, lenderArrayList, users, "lenders", sharedPreferences.getString("name", "Edward"));
+        borrowerDisplayAdapter = new DisplayAdapter((Activity) context, borrowerArrayList, users, "borrowers", sharedPreferences.getString("name", "Edward"));
         lenderList.setAdapter(lenderDisplayAdapter);
         borrowerList.setAdapter(borrowerDisplayAdapter);
         System.out.println("point c");
@@ -71,6 +84,7 @@ public class LedgerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, UpdateActivity.class);
+                intent.putExtra("users", users);
                 context.startActivity(intent);
             }
         });
@@ -80,6 +94,7 @@ public class LedgerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, SwitchActivity.class);
+                intent.putExtra("users", users);
                 context.startActivity(intent);
             }
         });
@@ -89,12 +104,40 @@ public class LedgerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, HistoryActivity.class);
+                intent.putExtra("usersByID", usersByID);
+
+                Bundle bundle = new Bundle();
+                bundle.putStringArrayList("transactions", transactions);
+
+                intent.putExtra("transactions", bundle);
                 context.startActivity(intent);
             }
         });
         System.out.println("point d");
     }
 
+    private void initialize() {
+
+        LedgerConstants ledgerConstants = new LedgerConstants(sharedPreferences);
+        users = ledgerConstants.getAllUsers();
+        usersByID = ledgerConstants.getAllUsersById();
+        userTransactions = ledgerConstants.getUserTransactions();
+        ArrayList<JSONObject> transactionsOther = ledgerConstants.getAllTransactions();
+
+        transactions = new ArrayList<>();
+        int length = transactionsOther.size();
+        for (int i = 0; i < length; i++) {
+            transactions.add(transactionsOther.get(i).toString());
+        }
+
+        System.out.println(users.toString());
+        System.out.println(usersByID.toString());
+        System.out.println(transactions.toString());
+        System.out.println(userTransactions.toString());
+
+    }
+
+    /*
     private class GetTransactionsRunnable implements Runnable {
 
         private volatile ArrayList<HashMap<String, Integer>> transactions;
@@ -148,19 +191,6 @@ public class LedgerActivity extends AppCompatActivity {
         System.out.println(userTransactions.toString());
         return userTransactions;
     }
-
-    private JSONObject loadUserLedger(String name, String password) {
-        Webb webb = Webb.create();
-        JSONObject jsonObject = webb.get(postURL + "/users/" + sharedPreferences.getString("id", "1") + "/summary")
-                .param("action", "load")
-                .param("name", name)
-                .param("password", password)
-                .ensureSuccess()
-                .asJsonObject()
-                .getBody();
-        System.out.println(sharedPreferences.getString("id", "1"));
-        System.out.println(jsonObject.toString());
-        return jsonObject;
-    }
+    */
 
 }

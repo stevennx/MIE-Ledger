@@ -25,28 +25,33 @@ public class HistoryActivity extends AppCompatActivity {
     ListView historyList;
     Button returnButton;
     TransactionAdapter transactionAdapter;
-    GetUsersAndTransactionsRunnable getUsersRunnable;
     Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("history e");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         context = this;
-
-        getUsersRunnable = new GetUsersAndTransactionsRunnable();
-        new Thread(getUsersRunnable).start();
-        while (!getUsersRunnable.usersCompleted()) {
-
+        System.out.println("history d");
+        Intent intent = getIntent();
+        System.out.println("history a");
+        HashMap<String, String> usersByID = (HashMap<String, String>) intent.getSerializableExtra("usersByID");
+        System.out.println("history b");
+        ArrayList<String> transactionsOther = intent.getBundleExtra("transactions").getStringArrayList("transactions");
+        ArrayList<JSONObject> transactions = new ArrayList<>();
+        int length = transactionsOther.size();
+        try {
+            for (int i = 0; i < length; i++) {
+                transactions.add(new JSONObject(transactionsOther.get(i)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        HashMap<String, String> usersById = getAllUsersById();
-        while (!getUsersRunnable.transactionsCompleted()) {
-
-        }
-        ArrayList<JSONObject> transactions = getTransactions();
+        System.out.println("history c");
 
         historyList = findViewById(R.id.listView6);
-        transactionAdapter = new TransactionAdapter(this, transactions, usersById);
+        transactionAdapter = new TransactionAdapter(this, transactions, usersByID);
         historyList.setAdapter(transactionAdapter);
 
         returnButton = findViewById(R.id.button9);
@@ -65,6 +70,7 @@ public class HistoryActivity extends AppCompatActivity {
         });
     }
 
+    /*
     private class GetUsersAndTransactionsRunnable implements Runnable {
 
         private volatile JSONArray userArray;
@@ -140,6 +146,7 @@ public class HistoryActivity extends AppCompatActivity {
 
         return transactions;
     }
+    */
 
     private void updateTransaction(final int transactionID, final boolean active) {
 

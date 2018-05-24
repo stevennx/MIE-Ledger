@@ -34,11 +34,12 @@ public class SwitchActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("identity", Context.MODE_PRIVATE);
         sharedPreferencesEditor = sharedPreferences.edit();
         context = this;
+        Intent intent = getIntent();
+        final HashMap<String, String> users = (HashMap<String, String>) intent.getSerializableExtra("users");
 
         selectionView = findViewById(R.id.listView6);
         confirmButton = findViewById(R.id.button4);
 
-        final HashMap<String, String> users = getAllUsers();
         selectionAdapter = new SelectionAdapter(this, new ArrayList<>(users.keySet()));
         selectionView.setAdapter(selectionAdapter);
 
@@ -56,6 +57,7 @@ public class SwitchActivity extends AppCompatActivity {
 
     }
 
+    /*
     private class GetUsersRunnable implements Runnable {
 
         private volatile JSONArray jsonArray;
@@ -103,5 +105,6 @@ public class SwitchActivity extends AppCompatActivity {
 
         return users;
     }
+    */
 
 }

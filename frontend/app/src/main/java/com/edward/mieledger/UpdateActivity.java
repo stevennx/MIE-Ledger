@@ -42,6 +42,8 @@ public class UpdateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_transaction);
         context = this;
         sharedPreferences = getSharedPreferences("identity", Context.MODE_PRIVATE);
+        Intent intent = getIntent();
+        final HashMap<String, String> users = (HashMap<String, String>) intent.getSerializableExtra("users");
         System.out.println("update activity started");
 
         borrowerList = findViewById(R.id.listView2);
@@ -52,7 +54,6 @@ public class UpdateActivity extends AppCompatActivity {
         descriptionText = findViewById(R.id.editText3);
         confirmButton = findViewById(R.id.button2);
 
-        final HashMap<String, String> users = getAllUsers();
         borrowerSelectionAdapter = new SelectionAdapter(this, new ArrayList<>(users.keySet()));
         borrowerList.setAdapter(borrowerSelectionAdapter);
         lenderSelectionAdapter = new SelectionAdapter(this, new ArrayList<>(users.keySet()));
@@ -102,6 +103,7 @@ public class UpdateActivity extends AppCompatActivity {
 
     }
 
+    /*
     private class GetUsersRunnable implements Runnable {
 
         private volatile JSONArray jsonArray;
@@ -126,6 +128,30 @@ public class UpdateActivity extends AppCompatActivity {
         }
 
     }
+
+    private HashMap<String, String> getAllUsers() {
+
+        GetUsersRunnable getUsersRunnable = new GetUsersRunnable();
+        new Thread(getUsersRunnable).start();
+        while (!getUsersRunnable.isCompleted()) {
+
+        }
+        JSONArray userData = getUsersRunnable.getUserData();
+
+        int length = userData.length();
+        HashMap<String, String> users = new HashMap<>();
+
+        try {
+            for (int i = 0; i < length; i++) {
+                users.put(userData.getJSONObject(i).getString("name"), userData.getJSONObject(i).getString("id"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return users;
+    }
+    */
 
     private static boolean isProperAmount(String amount) {
 
@@ -155,29 +181,6 @@ public class UpdateActivity extends AppCompatActivity {
 
     private static int stringAmountToCents(String amount) {
         return (int) (100f * Float.valueOf(amount));
-    }
-
-    private HashMap<String, String> getAllUsers() {
-
-        GetUsersRunnable getUsersRunnable = new GetUsersRunnable();
-        new Thread(getUsersRunnable).start();
-        while (!getUsersRunnable.isCompleted()) {
-
-        }
-        JSONArray userData = getUsersRunnable.getUserData();
-
-        int length = userData.length();
-        HashMap<String, String> users = new HashMap<>();
-
-        try {
-            for (int i = 0; i < length; i++) {
-                users.put(userData.getJSONObject(i).getString("name"), userData.getJSONObject(i).getString("id"));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return users;
     }
 
     private static void addTransaction(final String name, final String password, final String borrowerID, final String lenderID, final int amount, final String description) {
